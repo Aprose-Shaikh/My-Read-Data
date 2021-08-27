@@ -1,0 +1,29 @@
+Fail fast or fail safe – which is better?
+
+ Fail safe is not safe. Fail safe doesn’t mean robustness. We are preserving, concealing defects in the system.
+When a failure is detected a workaround is substituted and the availability of system is ensured.
+Fail fast brings out the defect as and when it is detected. The error is taken out wide open to public and the system is shutdown. 
+Business is obstructed, but we get a chance to rectify. We fix the error and bring the system up and proceed. Thus continuing really makes the system robust, not concealing the error condition. Though it results in interrupted availability, over a period it results in a robust system. Fail fast ensures that we don’t ride a punctured bike and create irreversible issues. Do not expect failures in the program as natural, but it should be designed in a way such that in case of unexpected failure the program should fail fast.
+
+Exception handling and fail fast or safe
+
+Exception handling in java induces us to design our program to be fail safe.
+Instead we should use exception handling to fail gracefully and quickly.
+Exception should not be carried around in the sequence flow for too long. 
+Golden rule with exception handling is, throw early and catch late.
+When we hit an exception, it should be thrown immediately. 
+We should not catch an exception unless we are sure what to do with it and the action we take by catching it should negate the failure.
+
+Fail fast vs fail safe Java iterators
+Java iterator provides us with interface to parse the items of the underlying collection.
+ When we are using the iterator the underlying collection should not be modified.
+ If this treaty is not honoured and it is possible in a multi-threaded environment, then we get a ConcurrentModificationException.
+
+Fail fast Iterators
+We need to remember two points about this. Point one is, this behaviour is not guaranteed. 
+Detecting modification in the collection and parsing the collection is not done synchronously. Modification on the collection may go unnoticed under certain circumstances. So while programming, this behaviour should not be banked upon. 
+Example for fail fast iterators are ArrayList, Vector, HashSet.
+
+
+
+

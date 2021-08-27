@@ -1,0 +1,66 @@
+Spring-
+Features
+
+1) Light weight
+2) Modular/Layer architecture
+3) Have its won container
+4) Can integrate with ORM tools
+5)  Testing an application written with Spring is simple because environment-dependent code is moved into this framework.
+6) Spring provides a consistent transaction management interface that can scale down to a local transaction 
+-------------------------------
+Modules 
+Spring frmwork provides 20 modules
+1) Data Access Integration
+	1)JDCB	2)ORM 	3)OXM	4)TRANSACTION 	5)JMS
+2) WEB
+	1)Servlet  2)Web   3)Struts    4)Portlet
+3) Core	
+	1) Core	   2) Context  3)Expression Language	4)container
+4) Misslanious
+	1) IOC 	2)Instrument	3) Accpect
+
+--------------------------------
+ 
+Spring provides following two distinct types of containers
+Spring BeanFactory Container
+	This is the simplest container providing basic support for DI and defined by the org.springframework.beans.factory.BeanFactory interface.
+	The BeanFactory and related interfaces, such as BeanFactoryAware, InitializingBean, DisposableBean, are still present in Spring for the purposes of backward compatibility with the large number of third-party frameworks that integrate with Spring.
+Spring ApplicationContext Container 
+	This container adds more enterprise-specific functionality such as the ability to resolve textual messages from a properties file and the ability to publish application events to interested event listeners
+	
+The ApplicationContext container includes all functionality of the BeanFactory container, so it is generally recommended over the BeanFactory.
+
+-----------------------------
+Bean
+ Bean is a object that is instantiate , managed by container
+
+Bean configuration metadata
+1)class - specify the bean class to be used to create the bean.
+2)Scope - This attribute specifies the scope of the objects created from a particular bean definition 
+	singleton - This scopes the bean definition to a single instance per Spring IoC container (default). 
+	prototype - This scopes a single bean definition to have any number of object instances. 
+	request - This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext. 
+	session - This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext. 
+	global-session - This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext. 
+
+3)name/id - This attribute specifies the bean identifier uniquely
+4)initialization method -
+5)destruction method
+6)lazy-initialization mode -A lazy-initialized bean tells the IoC container to create a bean instance when it is first requested, rather than at startup.
+7)autowiring mode - This is used to inject the dependencies 
+
+------------------------------------------------------
+Life cycle of a Spring bean - 
+	When a bean is instantiated, it may be required to perform some initialization to get it into a usable state. Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
+	To define setup and teardown for a bean, we simply declare the <bean> with init-method and/or destroy-method parameters. The init-method attribute specifies a method that is to be called on the bean immediately upon instantiation. Similarly, destroy-method specifies a method that is called just before a bean is removed from the container.
+Initialization callbacks:
+	The org.springframework.beans.factory.InitializingBean interface specifies a single method:
+
+The org.springframework.beans.factory.InitializingBean interface specifies a single method:
+
+void afterPropertiesSet() throws Exception;
+So you can simply implement above interface and initialization work can be done inside afterPropertiesSet() method as follows:
+
+
+BeanPostProcessor 
+	

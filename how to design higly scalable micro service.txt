@@ -1,0 +1,67 @@
+Micro services are small, loosely coupled applications or services that can fail independently from
+
+each other.
+
+When a micro service fails, only a single process in this system should become an available while the
+
+rest of the system remains unaffected.
+
+**************Core Principle of MicroServices***************
+1) MicroServices should loosely coupled
+2) MicroServices should failed independently
+3) MicroServices should not share the code 
+4) MicroServices should be responsible for single function/system/process
+
+/**************************Anti - pattern**********
+1) Why is a single database approach considered as an anti-pattern?
+	With microservices we should avoid single points of failure, else we cannot gaurentee that services will fail independently.
+*************************Buidling block of microservices architectre*********
+1) WHy REST Websevice 
+ Get, POST, PUT, PATCH, DELETE , JSON
+ 
+ *************************************************
+  Having to keep track of multiple microservice endpoints complicates client integration, especially when microservices are moved.
+  **********************************************
+  An API gateway can route HTTP traffic to microservices that are running on different hosts as long as it has network access to that host address.
+  
+  /****************Event Driven communication***********/
+  Event bus - used by microservices for comunication without having to know 
+  each other, one microservice publish the event in bus and another microservice consumes that event 
+  
+  ***********************Secure MicroServices*****************
+  user oAuth2 for authentication and authorization
+  add authentication layer in api gateway
+  use JWT
+  
+  ********************JWT*****************
+  JSON Web Token - based in the RF 7519c standard that defines X's
+  tokens can be generated and encoded as Jason objects to enable the secure transmission of data.
+  
+  Jason Webb token consist of a set of claims which basically refers to information in the form of key
+
+value pairs that are generally used for authentication authorization and for exchanging sensitive information.
+
+Jason Webb tokens are trusted since they are digitally signed using a hash based message authentication
+
+code algorithm or an RSA signature with a two five six.
+  
+  Claims can be viewed as meta data that is encrypted and attached to a JWT for the purposes of authentication, authorization and for exchanging sensitive information
+  
+  The JWT would then be authenticated in the military service, usually by middleware that uses token
+  
+  
+  *******************************Data Design Patterns*****************
+  1) CQRS - Command Query Responsibilty -As the name suggests, applications should be divided into two parts, a command part (operation that alter the state of the object/data)and a query part(returns the state of the object)
+  
+  /*****************Saga Patterns*****************
+  In Saga Pattern , Distributed Transactions tat involve two or more microservice
+  
+  *****************Containerization of MicroServices***************
+  Containerization is packaging or creating image of required lib, executables with your application
+   Containers are lightweight and share the kernel of the host operating system between each other.
+   
+   **************
+   Consul is a tool for service, discovery, monitoring and configuration.
+
+It uses serve to form dynamic clusters and a peer to peer datastore based on SIRF library.
+  

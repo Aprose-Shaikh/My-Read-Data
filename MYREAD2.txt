@@ -1,0 +1,92 @@
+1)Abstraction in Java
+Having read the above section, you might have now come to an idea of how abstraction is done in Java. 
+
+When we conceptualize a class
+When we write an ‘interface’
+When we write an ‘abstract’ class, method
+When we write ‘extends’
+When we apply modifiers like ‘private’, …
+in all these areas, we use abstraction as a concept. I think example Java code for all the above is very trivial. If you find it difficult to understand abstraction, pour your question in the comments section
+
+2)When to use LinkedList<> over ArrayList<>?
+LinkedList and ArrayList are two different implementations of the List interface.
+LinkedList implements it with a doubly-linked list. ArrayList implements it with a dynamically resizing array.
+
+As with standard linked list and array operations, the various methods will have different algorithmic runtimes.
+
+For LinkedList<E>
+
+•get(int index) is O(n)
+•add(E element) is O(1)
+•add(int index, E element) is O(n)
+•remove(int index) is O(n)
+•Iterator.remove() is O(1) <--- main benefit of LinkedList<E>
+•ListIterator.add(E element) is O(1) <--- main benefit of LinkedList<E>
+For ArrayList<E>
+
+•get(int index) is O(1) <--- main benefit of ArrayList<E>
+•add(E element) is O(1) amortized, but O(n) worst-case since the array must be resized and copied
+•add(int index, E element) is O(n - index) amortized, but O(n) worst-case (as above)
+•remove(int index) is O(n - index) (i.e. removing last is O(1))
+•Iterator.remove() is O(n - index)
+•ListIterator.add(E element) is O(n - index)
+LinkedList<E> allows for constant-time insertions or removals using iterators, but only sequential access of elements. In other words, you can walk the list forwards or backwards, but finding a position in the list takes time proportional to the size of the list.
+
+ArrayList<E>, on the other hand, allow fast random read access, so you can grab any element in constant time. But adding or removing from anywhere but the end requires shifting all the latter elements over, either to make an opening or fill the gap. Also, if you add more elements than the capacity of the underlying array, a new array (twice the size) is allocated, and the old array is copied to the new one, so adding to an ArrayList is O(n) in the worst case but constant on average.
+
+So depending on the operations you intend to do, you should choose the implementations accordingly. Iterating over either kind of List is practically equally cheap. (Iterating over an ArrayList is technically faster, but unless you're doing something really performance-sensitive, you shouldn't worry about this -- they're both constants.)
+
+The main benefits of using a LinkedList arise when you re-use existing iterators to insert and remove elements. These operations can then be done in O(1) by changing the list locally only. In an array list, the remainder of the array needs to be moved (i.e. copied). On the other side, seeking in a LinkedList means following the links in O(n), whereas in an ArrayList the desired position can be computed mathematically and accessed in O(1).
+
+Also, if you have large lists, keep in mind that memory usage is also different. Each element of a LinkedList has more overhead since pointers to the next and previous elements are also stored. ArrayLists don't have this overhead. However, ArrayLists take up as much memory as is allocated for the capacity, regardless of whether elements have actually been added.
+
+The default initial capacity of an ArrayList is pretty small (10 from Java 1.4 - 1.7). But since the underlying implementation is an array, the array must be resized if you add a lot of elements. To avoid the high cost of resizing when you know you're going to add a lot of elements, construct the ArrayList with a higher initial capacity.
+
+It's worth noting that Vector also implements the List interface and is almost identical to ArrayList. The difference is that Vector is synchronized, so it is thread-safe. Because of this, it is also slightly slower than ArrayList. So as far as I understand, most Java programmers avoid Vector in favor of ArrayList since they will probably synchronize explicitly anyway if they care about that.
+
+3)difference between instanceof and isinstance in java
+•instanceof is a reserved word of Java, whereas isInstance(Object obj) is a method of java.lang.Class
+•instanceof is used to check to see if an object can be cast into a specified type without throwing a cast class exception.
+•isInstance() determines if the specified Object is assignment-compatible with the object represented by this Class. This method is the dynamic equivalent of the Java language instanceof operator. The method returns true if the specified Object argument is non-null and can be cast to the reference type represented by this Class object without raising a ClassCastException. It returns false otherwise.
+
+
+Difference between Comparator and Comparable in Java
+One of the common interview question is ‘What are differences between Comparator and Comparable’. or ‘How will you sort collection of employee objects by its id or name’.For that we can use two interfaces.i.e. Comparator and Comparable.Before we actually see differences,let me give you brief introduction of both.
+
+Comparable interface: Class whose objects to be sorted must implement this interface.In this,we have to implement compareTo(Object) method.
+
+1 public class Country implements Comparable{  
+
+2        @Override 
+
+3     public int compareTo(Object arg0) {  
+
+4         Country country=(Country) arg0;  
+
+5         return (this.countryId < country.countryId ) ? -1: (this.countryId > country.countryId ) ? 1:0 ;  
+
+6 }} 
+If any class implements comparable inteface then collection of that object can be sorted automatically using Collection.sort() or Arrays.sort().Object will be sort on the basis of compareTo method in that class.
+
+Objects which implement Comparable in java can be used as keys in a SortedMap like TreeMap or SortedSet like TreeSet without implementing any other interface.
+
+Comparator interface: Class whose objects to be sorted do not need to implement this interface.Some third class can implement this interface to sort.e.g.CountrySortByIdComparator class can implement Comparator interface to sort collection of country object by id. For example
+
+
+
+Question: Give the list of Java Object class methods. 
+
+ 
+clone() - Creates and returns a copy of this object.
+	equals() - Indicates whether some other object is "equal to" this one.
+	finalize() - Called by the garbage collector on an object when garbage collection
+			determines that there are no more references to the object.
+	getClass() - Returns the runtime class of an object.
+	hashCode() - Returns a hash code value for the object.
+	notify() - Wakes up a single thread that is waiting on this object's monitor.
+	notifyAll() - Wakes up all threads that are waiting on this object's monitor.
+	toString() - Returns a string representation of the object.
+	wait() - Causes current thread to wait until another thread invokes the notify() method
+			or the notifyAll() method for this object.
+
+Why these threads related methods are present in Object class rather than in java.lang.Thread class

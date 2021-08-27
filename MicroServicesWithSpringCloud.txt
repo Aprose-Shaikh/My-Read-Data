@@ -1,0 +1,41 @@
+Advantages Microservices
+1) 
+ bring new features to market
+
+**************************************************************************
+Centralize Configuration
+Microservices are having lot of configuration and multiple enviroment so centralize configuration comes in picture
+You can put all these configuration in git repository and SpringCloudConfigSever will connector to git repository
+
+/*****************
+Spring cloud config Server
+SpringCloudConfigSever pickup the configuration from git repository
+Your service will talk to SpringCloudConfigSever and pick up from git repository
+Rename application.proprties to bootstrap.properties
+add property Spring.cloud.config.uri , the uri of spring clould config server, where u stored all the properties, based on application name the values are picked up from repository
+
+/*****************Feign*********************
+Feign is one of the component which spring inheriated from netflix
+add dependecy for spring.cloud.starter.feign
+once we had dependency addedd enable feign by @EnableFeignClients the service which are getting invoke
+
+Create the proxy interface, create feign client interface @FeignClient
+
+it make it easy to call external rest ful services
+it help us to simply the client code 
+
+/****************************Ribbon load balancer ***********************
+We are using Feign to call the Currency Exchange Service. Ribbon can make use of the Feign configuration
+add spromg.cloud.starter.ribbon
+add anotoation @RibbonClient and do not specify uri
+u need to specify list of uri in application.properties <ur_Service_name>.ribbon.listOfServers=https://localhost:8800,https://localhost:8801
+
+/***********************Eureka Naming Server*********************/
+IMP Features are
+1) Service Registration
+2) Service Discovery
+Add dependecy EurekaNamingServer
+put @EnableEurekaServer
+
+@EnableEurekaClient
+

@@ -1,0 +1,26 @@
+Java 8 provided support to functional programming, streaming API, new Java Script engin, new api for date time manipulation
+New Features
+	1) Lambda Expression - Added functional proccessing capability to Java
+	2) Method Referencing - Referencing the function using thier name instead of invoking it directly, using function as a parameter.
+	3) New Tool - New tool 'jdeps' is been introduced to check java dependencies
+	4) Stream API - Stream API is been added for pipeline proccessing
+	5) New Date Time API - New Date Time API is been added 
+	6) Optional - To handle null values properly Optional is added
+	7) Default Method - Interface can have default method implemetation
+	8) JAVA Script Engine - Neshorn is new java script engin, which execute java script code.
+	
+	
+	Advantage of spring boot
+	collectors
+	
+	performance improvment in jdk 8 for hashmap? 
+auotomic variable
+hashcode and equals method
+
+Java 8 Stream is faster ?Why?
+
+
+Java String intern()
+The java string intern() method returns the interned string. It returns the canonical representation of string.
+
+It can be used to return string from memory, if it is created by new keyword. It creates exact copy of heap string object in string constant pool.

@@ -1,0 +1,139 @@
+What is webservice? - A service which is delivered over it internet, which is interoperable m/c to m/c interaction over the n/w.
+
+1) Req and Resp formate - i) XML Formate ii) JSON (Java scrpt obj notation)
+
+2) Service Definition    - Apllication knows req/resp formate and endpoint by service defination, its contract between provider and consumer 
+
+3)Service Provider - Host
+
+4) Service provider - Consumer
+
+5) Transport - service exposed Over Internate or MQ
+/**************************************************************************************************
+Different types of WebServices
+
+1) SOAP - Simple Obj access protocol, XML format for req and res XML structure is, soap env , soap header and soap body
+
+WSDL - endpoint, operations , req and response structure
+
+2) RestFul Webservices -REpresentational State Transfer,  Architectural approach
+/*************************************************************************************************************************
+Disadvantage of Rest
+
+1) No strict data exchange format
+
+2) No Service Definition format
+/*******************
+
+
+GET - To retreive data
+POST - TO Create/UPdate Data
+Delete - To Delete Data
+/***************
+
+Whats Happening in the Back Ground
+1) What is dispatcher servlet ? 
+DispatcherServlerAutoConfiguration match
+Spring boot starter web has a dependency on Spring Web MVC Framework, so we get DispatcherServlet in our class path
+It has default error page configured, 
+All of these configuration getting fired because of Spring boot auto configuration
+/*********************************
+Annotations
+@RestController
+@@GetMapping
+@PathVariable
+@Component
+@RequestBody
+@Valid - java.validation api
+/***********
+how to create response and how to set uri which will point to newly created resource
+A- ResponseEntity.created
+
+******************************************************
+Exception Handling-
+Default Error handling - Combination of spring boot and Spring MVC frmworks, Spring boot autoconfigure default exception handling
+One of the class presnt in Spring is ResponseEntityExceptionHandler, it is abstract class which can be extended to provide centralize exception handling ---> every controllor should use it , so make it @RestController and another thing we want it to be applicable across all the controllor use @ControllorAdvise
+/************************************
+ Spring HATEOAS lets you work with links through its immutable Link value type.
+ 
+ /***************
+ Internationalize, - application.properies -- add spring.messages.basename=messages
+ change in main java file which has @SpringBootApplication
+ add method
+ 
+ @Bean
+	public LocaleResolver localResolver() {
+		AcceptHeaderLocaleResolver sessionLocalResolver = new AcceptHeaderLocaleResolver();
+		sessionLocalResolver.setDefaultLocale(Locale.US);
+		return sessionLocalResolver;
+	}
+ 
+	
+	then in ur controllor and in respective method add 
+		@Autowired
+	private MessageSource messageSource;
+	LocaleContextHolder.getLocale()
+ 
+ ********************************
+  Content Negotiation  XML Formate
+  add 
+  
+  <dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+		
+		
+/************************Swagger
+io.springfox.swagger
+io.springfox.swagger.ui
+@EnableSwagger
+@Configuration
+
+/********************
+Moniotring
+1) Actuator - Monitoring services , Actuator API is in HAL formate
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-rest-hal-explorer</artifactId> //to at the services which are in browser(HAL- Hypertext Application Language)
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+	
+	application.properties add management.endpoints.web.exposure.include=*
+	
+	
+	/*****************************
+	Filters
+	user @JsonIgnor to filert out fields from response
+	Dyanmic Filters - configure filters using SimpleBeanPropertyFilters, FilterProvider, MappingJacksonValue,
+	add the Filter on Bean @JsonFilter annotation
+	
+	***********************************
+	Versioning
+	1) Basic Versioning by having different URI (URI Versioning)
+	2) RequestParam @GetMapping (path = "/person/param", params ="version=1")
+			public PersonV1 getParamV1() {
+				return new PersonV1("Aprose Shaikh");
+			}
+		@GetMapping (path = "/person/param", params ="version=2")
+			public PersonV2 getParamV2() {
+				return new PersonV2(new Name("Aprose", "Shaikh"));
+			}
+	3) Head Parameter (header Versioning) - User request header
+		inseated of params user headers
+	4) By Using Producers (Mine type Versioning)- 
+		inseated of params user produces
+		
+/********************
+Authentication
+1) Digest Authontication
+2) Oauth or Oauth2 
+security.user.name=username
+security.user.password=passwrd in application.properties add dependency <artifactId>spring-boot-starter-security</artifactId>
+/********************************
+JPA - @Repository on interface extens JpaRepository
+
+********************		

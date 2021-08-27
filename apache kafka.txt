@@ -1,0 +1,54 @@
+Messageing System - Application to application communication, integrated System.
+Apache Kafka is not only a Messaging System but a streaming platform
+
+Kafka Analogy -> Publisher Publish the message in storage room, consumer listens to that room
+Storage room -> is consist of offset, topic ans partition
+
+Storage room has topic , each topic can have multiple partition i.e. partition 1, partition 2 etc..
+each partition has message offset, offset starte with 0 and keeps growing i.e. 1, 2, ect
+
+Kafka Producer -> which producess message to Kafka topic, kafka topic has partition , while creating topic developer need to specify no. of partition. producer can tell a message with specific key should go to specified partition
+
+Kafka Consumer ->
+Consumer reads message from partition, when consumer reads message it remembers offset
+Consumer Group -> Grp of consumer can access to certain partition, same partition accessed by another grp as well
+*******************************************
+Delivery Semantic
+Consumer can choose whether offset saving is happen automatically or manual.
+There are three kind of delivery semantics.
+
+The first is at-most-once,
+
+where offset is committed immediately after read, so only zero or once delivery happened.
+
+In this semantic, if something goes wrong during processing, the message will not be
+
+re-processed.
+
+The second is at-least-once, where offset commit happens after message processed.
+
+When something goes wrong during process, the offset should not committed, so consumer
+
+will re-process the message.
+
+In this semantic, there is a possibility that message is re-processed, so we must design
+
+an idempotent consumer.
+
+Idempotent means re-processing the message that already processed will not have impact
+
+on your system.
+***********************************
+Zookeeper - Is responsible to manage broker in the cluster, add broker, synchronization between brokers
+/**************************************************
+
+
+Apache Kafka is publish-subscribe based fault tolerant messaging system. 
+ It is fast, scalable and distributed by design.
+ 
+ Apache Kafka is a distributed publish-subscribe messaging system and a robust queue that can handle a high volume of data and enables you to pass messages from one end-point to another.
+ Kafka is suitable for both offline and online message consumption. Kafka messages are persisted on the disk and replicated within the cluster to prevent data loss. 
+ 
+ 
+ 
+ 

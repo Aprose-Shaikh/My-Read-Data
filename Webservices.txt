@@ -1,0 +1,108 @@
+What is webservice? - A service which is delivered over it internet, which is interoperable m/c to m/c interaction over the n/w.
+
+1) Req and Resp formate - i) XML Formate ii) JSON (Java scrpt obj notation)
+
+2) Service Definition    - Apllication knows req/resp formate and endpoint by service defination, its contract between provider and consumer 
+
+3)Service Provider - Host
+
+4) Service provider - Consumer
+
+5) Transport - service exposed Over Internate or MQ
+/**************************************************************************************************
+Different types of WebServices
+
+1) SOAP - Simple Obj access protocol, XML format for req and res XML structure is, soap env , soap header and soap body
+
+WSDL - endpoint, operations , req and response structure
+
+2) RestFul Webservices -REpresentational State Transfer,  Architectural approach
+/*************************************************************************************************************************
+Disadvantage of Rest
+
+1) No strict data exchange format
+
+2) No Service Definition format
+/*******************
+
+
+GET - To retreive data
+POST - TO Create/UPdate Data
+PUT - UPdate Data
+PATCH -  Partially Update Data
+Delete - To Delete Data
+/***************
+
+Whats Happening in the Back Ground
+1) What is dispatcher servlet ? 
+DispatcherServlerAutoConfiguration match
+Spring boot starter web has a dependency on Spring Web MVC Framework, so we get DispatcherServlet in our class path
+It has default error page configured, 
+All of these configuration getting fired because of Spring boot auto configuration
+/*********************************
+Annotations
+@RestController
+@@GetMapping
+@PathVariable
+@Component
+@RequestBody
+@Valid - java.validation api
+/***********
+how to create response and how to set uri which will point to newly created resource
+A- ResponseEntity.created
+
+******************************************************
+Exception Handling-
+Default Error handling - Combination of spring boot and Spring MVC frmworks, Spring boot autoconfigure default exception handling
+One of the class presnt in Spring is ResponseEntityExceptionHandler, it is abstract class which can be extended to provide centralize exception handling ---> every controllor should use it , so make it @RestController and another thing we want it to be applicable across all the controllor use @ControllorAdvise
+/************************************
+ Spring HATEOAS lets you work with links through its immutable Link value type.
+ 
+ /***************
+ Internationalize, - application.properies -- add spring.messages.basename=messages
+ change in main java file which has @SpringBootApplication
+ add method
+ 
+ @Bean
+	public LocaleResolver localResolver() {
+		AcceptHeaderLocaleResolver sessionLocalResolver = new AcceptHeaderLocaleResolver();
+		sessionLocalResolver.setDefaultLocale(Locale.US);
+		return sessionLocalResolver;
+	}
+ 
+	
+	then in ur controllor and in respective method add 
+		@Autowired
+	private MessageSource messageSource;
+	LocaleContextHolder.getLocale()
+ 
+ ********************************
+  Content Negotiation  XML Formate
+  add 
+  
+  <dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+		
+		
+/************************Swagger
+io.springfox.swagger
+io.springfox.swagger.ui
+@EnableSwagger
+@Configuration
+
+/********************
+Moniotring
+1) Actuator - Monitoring services , Actuator API is in HAL formate
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-rest-hal-explorer</artifactId> //to at the services which are in browser(HAL- Hypertext Application Language)
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+	
+	application.properties add management.endpoints.web.exposure.include=*
+ 

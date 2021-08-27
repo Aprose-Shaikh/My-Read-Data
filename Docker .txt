@@ -1,0 +1,36 @@
+Deployment of microservices become diffecult
+How can u deploy these microservices of different language 
+thats why docker came in picture
+Docker image contains jdk, paython or nodeJS
+
+*******************hub.docker.com*****************
+its a registory /repository
+its conatains
+docker architecture
+Docker client-->Docker Deamon/engine-->Container
+									-->Local Image
+									-->Imager Registory
+Docker image contains all the s/w , libraries are the part of it
+/*********************Distributed Tracing*******************************
+how do u trace the problem when multiple microservices are chained
+Zipkin container - Distributed tracing server
+command - docker  -p 9411:9411 openzipkin/zipkin:2.23.
+
+HTTP. So, API Gateway, Currency Conversion services, Currency Exchange service, all of these would be sending the
+
+information out to the Distributed Tracing Server using HTTP calls. And the distributed tracing
+The information from these microservices is lost. And to prevent that from happening
+
+what we can do is, we can have a queue in between.
+
+We can have a queue like Rabbit MQ in between. All the microservices can send the information out to
+
+the Rabbit MQ queue and the Distributor Tracing Server can be picking up the information from the Rabbit
+
+MQ.
+
+This would ensure that even if the Distributor Tracing Server is down, the microservices can keep
+
+sending messages to Rabbit MQ. And when the Distributor Tracing Server is up, it can pick up the messages
+
+Dependcies -> Slauth, Zipkin 

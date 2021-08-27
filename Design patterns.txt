@@ -1,0 +1,28 @@
+Desing pattern is the solution to ur problrm
+Types of design pattern
+1) Structural design pattern :- This design pattern concerns abt Class and Object composition, it basically uses inheritence.
+2) behavior design pattern :- This design pattern to ways to object communication
+3) Creational design pattern :- This design pattern relate ways to object creationtion, the object creation logic is hidden 
+4) J2ee dessign pattern :- this design pattern is mostly related to the presention tire 
+
+
+/**********Creational Design Pattern****************************
+i) Factory Design Pattern - U create one interface say shape having method draw(), and diffrent classes implement that interface and provide implementation to draw method as per their type like circle, square, line etc.
+You have one Factory class which has logic to provide desire object, say ShapeFactory class has method getShape(String shapeName) depending on name it will return you shape class object and using that object you can call draw method
+****************************
+ii) Abstract Factory Design pattern - this design pattern has factory of factory class. It has super class abstract class which creates the factory
+*********************
+iii) Singleton Pattern - Only Single object of class should be created , devloper needs to take care of that
+
+
+******************************Structural Design Pattern*******************
+This Design pattern is the bridge between two incompatible interfaces
+
+******************************Intercepting Filter Pattern
+Intercepting Filter design pattern is used when you want to perform pre or post request processing
+You introduce the filter in code
+******************************Data Access Design pattern*********************
+Data Access Design pattern is used to seprate the logic which communicate with DataBase from buissness logic
+**********************************Transfer Object Pattern*******************
+Transfering value object over the network, we create a class with variable and setters and getters
+and serialize it
